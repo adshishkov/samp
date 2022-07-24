@@ -43,5 +43,11 @@ function main()
             sampSendChat('/mask')
             end
         end
+        -- Lights Car
+        if not sampIsChatInputActive() and not sampIsDialogActive() and not isPauseMenuActive() and not isSampfuncsConsoleActive() and not sampIsCursorActive() then
+            if wasKeyPressed(key.VK_Z) then
+            sampSendChat('/lights')
+            end
+        end
     end
 end
