@@ -1,6 +1,6 @@
 script_name('Time')
 script_author('adshishkov')
-script_version('1.0')
+script_version('1.1')
 
 local se = require 'samp.events'
 local vehNames = {"Landstalker", "Bravura", "Buffalo", "Linerunner", "Perrenial", "Sentinel", "Dumper", "Firetruck", "Trashmaster", "Stretch", "Manana", "Infernus", "Voodoo", "Pony", "Mule", "Cheetah", "Ambulance", "Leviathan", "Moonbeam", "Esperanto", "Taxi", "Washington", "Bobcat", "Whoopee", "BF Injection", "Hunter", "Premier", "Enforcer", "Securicar", "Banshee", "Predator", "Bus", "Rhino", "Barracks", "Hotknife", "Trailer", "Previon", "Coach", "Cabbie", "Stallion", "Rumpo", "RC Bandit", "Romero", "Packer", "Monster", "Admiral", "Squalo", "Seasparrow", "Pizzaboy", "Tram", "Trailer", "Turismo", "Speeder", "Reefer", "Tropic", "Flatbed", "Yankee", "Caddy", "Solair", "Berkley Van", "Skimmer", "PCJ-600", "Faggio", "Freeway", "RC Baron", "RC Raider", "Glendale", "Oceanic", "Sanchez", "Sparrow", "Patriot", "Quad", "Coastguard", "Dinghy", "Hermes", "Sabre", "Rustler", "ZR-350", "Walton", "Regina", "Comet", "BMX", "Burrito", "Camper", "Marquis", "Baggage", "Dozer", "Maverick", "News Chopper", "Rancher", "FBI Rancher", "Virgo", "Greenwood", "Jetmax", "Hotring", "Sandking", "Blista-C", "P-Maverick", "Boxvillde", "Benson", "Mesa", "RC Goblin", "Hotring A", "Hotring B", "Bloodring", "Rancher", "Super GT", "Elegant", "Journey", "Bike", "Mountain Bike", "Beagle", "Cropduster", "Stunt", "Tanker", "Roadtrain", "Nebula", "Majestic", "Buccaneer", "Shamal", "Hydra", "FCR-900", "NRG-500", "HPV-1000", "Cement Truck", "Tow Truck", "Fortune", "Cadrona", "FBI Truck", "Willard", "Forklift", "Tractor", "Combine", "Feltzer", "Remington", "Slamvan", "Blade", "Freight", "Streak", "Vortex", "Vincent", "Bullet", "Clover", "Sadler", "Firetruck", "Hustler", "Intruder", "Primo", "Cargobob", "Tampa", "Sunrise", "Merit", "Utility", "Nevada", "Yosemite", "Windsor", "Monster", "Monster", "Uranus", "Jester", "Sultan", "Stratum", "Elegy", "Raindance", "RC Tiger", "Flash", "Tahoma", "Savanna", "Bandito", "Freight Flat", "Streak", "Kart", "Mower", "Dune", "Sweeper", "Broadway", "Tornado", "AT-400", "DFT-30", "Huntley", "Stafford", "BF-400", "News Van", "Tug", "Trailer", "Emperor", "Wayfarer", "Euros", "Hotdog", "Club", "Freight Box", "Trailer", "Andromada", "Dodo", "RC Cam", "Launch", "Police Car", "Police Car", "Police Car", "Police Ranger", "Picador", "S.W.A.T", "Alpha", "Phoenix", "Glendale Shit", "Sadler Shit", "Luggage", "Luggage", "Stairs", "Boxville", "Tiller", "Utility"}
@@ -10,20 +10,48 @@ function se.onServerMessage(color, text)
 		return false
 	end
 
+	if  text:find('[Подсказка] С помощью телефона можно заказать такси. Среднее время ожидания - 2 минуты!', 1, true) then
+		return false
+	end
+
+	if  text:find("[Подсказка] Игроки владеющие 4-я домами могут бесплатно раз в день получать '2 Ларца Олигарха' в банке и его отделениях.", 1, true) then
+		return false
+	end
+
+	if  text:find('[Подсказка] Вы можете купить складское помещение /gps - складские помещения.', 1, true) or
+	    text:find('Этот тип недвижимости будет навсегда закреплен за вами и за него не нужно платить.', 1, true) or
+	    text:find('Таким образом вы можете сберечь своё имущество, даже если вас забанят.', 1, true) then
+		return false
+	end
+
+    if  text:find('{DFCFCF}[Подсказка] {DC4747}На сервере есть инвентарь, используйте клавишу Y для работы с ним.', 1, true) or
+	    text:find('{DFCFCF}[Подсказка] {DC4747}Вы можете задать вопрос в нашу техническую поддержку /report.', 1, true) or
+		text:find('- Игроки со статусом {FFFFFF}VIP{6495ED} имеют больше возможностей, подробнее /help [Преимущества VIP]', 1, true) then
+		return false
+	end
+    
+	if  text:find('[BATTLEPASS]{ffffff} Доступен Arizona BattlePass 2022! Используйте: /battlepass или REWARDS в инвентаре.', 1, true) or
+	    text:find('[BATTLEPASS]{ffffff} Зарабатывайте уникальные награды вместе с Arizona BattlePass.', 1, true) or
+	    text:find('[Колесо Фортуны]{ffffff} Проведите 20 минут в казино и получите возможность прокрутки колеса фортуны. (/GPS - Разное - Казино 4 дракона)', 1, true) then
+		return false
+	end
+
 	if 	text:find('В нашем магазине ты можешь приобрести нужное количество игровых денег и потратить', 1, true) or 
-		text:find('их на желаемый тобой {FFFFFF}бизнес, дом, аксессуар{6495ED} или на покупку каких-нибудь безделушек.', 1, true) or 
-		text:find('Игроки со статусом {FFFFFF}VIP{6495ED} имеют большие возможности, подробнее /help [Преимущества VIP]', 1, true) or
-		text:find('можно приобрести редкие {FFFFFF}автомобили, аксессуары, воздушные шары', 1, true) or
-		text:find('предметы, которые выделят тебя из толпы! Наш сайт: {FFFFFF}arizona-rp.com', 1, true) then
+	    text:find('их на желаемый тобой {FFFFFF}бизнес, дом, аксессуар{6495ED} или на покупку каких-нибудь безделушек.', 1, true) or 
+	    text:find('Игроки со статусом {FFFFFF}VIP{6495ED} имеют большие возможности, подробнее /help [Преимущества VIP]', 1, true) or
+	    text:find('можно приобрести редкие {FFFFFF}автомобили, аксессуары, воздушные шары', 1, true) or
+	    text:find('предметы, которые выделят тебя из толпы! Наш сайт: {FFFFFF}arizona-rp.com', 1, true) then
 		return false
 	end
 
 	if 	text:find('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', 1, true) or
-		text:find('- Основные команды сервера: /menu /help /gps /settings', 1, true) or
-		text:find('- Пригласи друга и получи бонус в размере $300 000!', 1, true) or
-		text:find('- Наш сайт: arizona-rp.com (Личный кабинет/Донат)', 1, true) then
+	    text:find('- Основные команды сервера: /menu /help /gps /settings', 1, true) or
+	    text:find('- Пригласи друга и получи бонус в размере $300 000!', 1, true) or
+	    text:find('- Наш сайт: arizona-rp.com (Личный кабинет/Донат)', 1, true) then
 		return false
 	end
+	
+
 
 	if text:find('{DFCFCF}[Подсказка] {DC4747}Чтобы завести двигатель введите {DFCFCF}/engine{DC4747} или нажмите {DFCFCF}N', 1, true) then
 		local car 	= storeCarCharIsInNoSave(PLAYER_PED)
