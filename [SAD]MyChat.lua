@@ -1,4 +1,4 @@
-script_name('Time')
+script_name('MyChat')
 script_author('adshishkov')
 script_version('1.1')
 

@@ -1,3 +1,8 @@
+script_name('Fps and Ping')
+script_author('adshishkov')
+script_version('1.0')
+
+
 require 'lib.moonloader'
 local memory = require 'memory'
 local ffi = require("ffi")
