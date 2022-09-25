@@ -21,6 +21,12 @@ function main()
             sampSendChat('/key')
             end
         end
+        -- Open Gate 
+        if not sampIsChatInputActive() and not sampIsDialogActive() and not isPauseMenuActive() and not isSampfuncsConsoleActive() and not sampIsCursorActive() then
+            if wasKeyPressed(key.VK_H) then
+            sampSendChat('/opengate')
+            end
+        end
         -- Bring down Anim
         if not sampIsChatInputActive() and not sampIsDialogActive() and not isPauseMenuActive() and not isSampfuncsConsoleActive() and not sampIsCursorActive() then
             if wasKeyPressed(key.VK_1) then
